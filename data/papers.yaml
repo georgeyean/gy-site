@@ -1,0 +1,42 @@
+# Job market paper
+- title: "Import Competition and Partisan Realignment: Evidence from U.S. Manufacturing Decline"
+  authors: "George Yean"
+  year: 2026
+  status: "working paper"
+  jmp: true
+  abstract: >
+    I study how import competition from China reshaped partisan alignment in U.S. manufacturing
+    communities between 2000 and 2020. Using a shift-share instrumental variables strategy, I find
+    that communities experiencing larger trade shocks exhibited significantly greater swings toward
+    the Republican Party in presidential elections, driven primarily by non-college white workers.
+    These effects are not explained by unemployment alone; I show that relative income decline and
+    community social disruption are important mediating mechanisms. The findings suggest that
+    trade-induced distributional conflict is a key driver of recent partisan polarization.
+  # pdf: "/files/yean-jmp.pdf"
+
+# Working papers
+- title: "Globalization and Welfare State Retrenchment: A Cross-National Analysis"
+  authors: "George Yean and Jane Smith"
+  year: 2025
+  status: "under review"
+  abstract: >
+    We examine how trade openness affects welfare state spending across 28 OECD countries from
+    1980 to 2020, finding that exposure to import competition from low-wage countries predicts
+    retrenchment in transfer programs targeting working-age adults.
+
+- title: "Capital Flows and Labor Market Polarization in Advanced Economies"
+  authors: "George Yean"
+  year: 2025
+  status: "work in progress"
+  abstract: >
+    This paper investigates whether inflows of foreign direct investment contribute to labor market
+    polarization in receiving countries, using a novel instrument based on bilateral tax treaty
+    signatures.
+
+# Publications
+- title: "Causal Inference in Trade Policy Research: A Methodological Review"
+  authors: "George Yean and Gary King"
+  year: 2025
+  status: "published"
+  venue: "Annual Review of Political Science"
+  link: "https://doi.org/10.1146/example"

@@ -1,0 +1,37 @@
+baseURL: "https://georgeyean.github.io/gy-site/"
+languageCode: "en-us"
+title: "George Yean"
+
+params:
+  author: "George Yean"
+  email: "georgeyean@gmail.com"
+  description: "Fourth-year PhD Candidate in Government at Harvard University"
+  department: "PhD Candidate, Department of Government"
+  university: "Harvard University"
+  affiliation: "Institute for Quantitative Social Science (IQSS)"
+  tagline: "I study the political economy of globalization"
+  advisor: "Gary King"
+  # photo: "/images/photo.jpg"   # uncomment and replace when you add a headshot
+  # cv: "/files/cv.pdf"          # uncomment when you upload your CV
+  github: "https://github.com/georgeyean"
+  # scholar: "https://scholar.google.com/citations?user=YOURID"
+  # twitter: "https://twitter.com/YOURHANDLE"
+  # linkedin: "https://linkedin.com/in/YOURPROFILE"
+  # orcid: "https://orcid.org/0000-0000-0000-0000"
+
+menu:
+  main:
+    - name: "Research"
+      url: "#research"
+      weight: 1
+    - name: "Teaching"
+      url: "#teaching"
+      weight: 2
+    - name: "CV"
+      url: "/files/cv.pdf"
+      weight: 3
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

@@ -1,0 +1,14 @@
+{{ define "main" }}
+<div class="container section">
+  <h2>Writing</h2>
+  <div class="paper-list">
+    {{ range .Pages }}
+    <div class="paper-entry">
+      <p class="paper-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>
+      <p class="paper-meta">{{ .Date.Format "January 2, 2006" }}</p>
+      {{ with .Summary }}<p class="abstract">{{ . }}</p>{{ end }}
+    </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

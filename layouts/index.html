@@ -1,0 +1,191 @@
+{{ define "main" }}
+
+{{/* ── Hero ── */}}
+<section class="hero" id="about">
+  <div class="hero-inner">
+    {{ if .Site.Params.photo }}
+    <img class="hero-photo" src="{{ .Site.Params.photo | relURL }}" alt="Photo of {{ .Site.Params.author }}" width="180" height="180" loading="eager">
+    {{ else }}
+    <div class="hero-photo hero-initials" aria-hidden="true"><span>GY</span></div>
+    {{ end }}
+    <div class="hero-text">
+      <h1>{{ .Site.Params.author }}</h1>
+      <p class="hero-dept">{{ .Site.Params.department }}<br>{{ .Site.Params.university }}</p>
+      {{ with .Site.Params.affiliation }}<p class="hero-affil muted">{{ . }}</p>{{ end }}
+      {{ with .Site.Params.tagline }}<p class="hero-tagline">{{ . }}</p>{{ end }}
+      <div class="hero-actions">
+        {{ with .Site.Params.email }}<a class="btn" href="mailto:{{ . }}">Email</a>{{ end }}
+        {{ with .Site.Params.cv }}<a class="btn btn-outline" href="{{ . | relURL }}">CV</a>{{ end }}
+      </div>
+      <div class="social-links">
+        {{ with .Site.Params.scholar }}<a class="social-link" href="{{ . }}">Google Scholar</a>{{ end }}
+        {{ with .Site.Params.github }}<a class="social-link" href="{{ . }}">GitHub</a>{{ end }}
+        {{ with .Site.Params.twitter }}<a class="social-link" href="{{ . }}">Twitter/X</a>{{ end }}
+        {{ with .Site.Params.linkedin }}<a class="social-link" href="{{ . }}">LinkedIn</a>{{ end }}
+        {{ with .Site.Params.orcid }}<a class="social-link" href="{{ . }}">ORCID</a>{{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ── Bio ── */}}
+{{ with .Content }}
+<section class="section" id="bio">
+  <div class="container prose">{{ . }}</div>
+</section>
+{{ end }}
+
+{{/* ── Research ── */}}
+{{ $papers := .Site.Data.papers }}
+{{ if $papers }}
+<section class="section" id="research">
+  <div class="container">
+    <h2>Research</h2>
+
+    {{ $jmp := where $papers "jmp" true }}
+    {{ range $jmp }}
+    <div class="jmp-card">
+      <p class="jmp-label">Job Market Paper</p>
+      <p class="paper-title">
+        {{ if .pdf }}<a href="{{ .pdf }}">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}
+      </p>
+      <p class="paper-meta">
+        {{ with .authors }}{{ . }}{{ end -}}
+        {{ with .year }} &middot; {{ . }}{{ end -}}
+        {{ with .venue }} &middot; <em>{{ . }}</em>{{ end -}}
+        {{ with .status }} &middot; <span class="badge">{{ . }}</span>{{ end }}
+      </p>
+      {{ with .abstract }}<p class="abstract">{{ . }}</p>{{ end }}
+      {{ with .pdf }}<p><a class="pdf-link" href="{{ . }}">↓ PDF</a></p>{{ end }}
+    </div>
+    {{ end }}
+
+    {{ $working := where $papers "jmp" "ne" true }}
+    {{ $working = where $working "status" "ne" "published" }}
+    {{ if $working }}
+    <h3>Working Papers</h3>
+    <div class="paper-list">
+      {{ range $working }}
+      <div class="paper-entry">
+        <p class="paper-title">
+          {{ if .pdf }}<a href="{{ .pdf }}">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}
+        </p>
+        <p class="paper-meta">
+          {{ with .authors }}{{ . }}{{ end -}}
+          {{ with .year }} &middot; {{ . }}{{ end -}}
+          {{ with .venue }} &middot; <em>{{ . }}</em>{{ end -}}
+          {{ with .status }} &middot; <span class="badge">{{ . }}</span>{{ end }}
+        </p>
+        {{ with .abstract }}<p class="abstract">{{ . }}</p>{{ end }}
+        {{ with .pdf }}<a class="pdf-link" href="{{ . }}">↓ PDF</a>{{ end }}
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    {{ $published := where $papers "status" "published" }}
+    {{ if $published }}
+    <h3>Publications</h3>
+    <div class="paper-list">
+      {{ range $published }}
+      <div class="paper-entry">
+        <p class="paper-title">
+          {{ if .link }}<a href="{{ .link }}">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}
+        </p>
+        <p class="paper-meta">
+          {{ with .authors }}{{ . }}{{ end -}}
+          {{ with .venue }} &middot; <em>{{ . }}</em>{{ end -}}
+          {{ with .year }}, {{ . }}{{ end }}
+        </p>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+
+  </div>
+</section>
+{{ end }}
+
+{{/* ── Software ── */}}
+{{ $projects := .Site.Data.projects }}
+{{ if $projects }}
+<section class="section" id="software">
+  <div class="container">
+    <h2>Software</h2>
+    <div class="paper-list">
+      {{ range $projects }}
+      <div class="paper-entry">
+        <p class="paper-title">
+          {{ if .link }}<a href="{{ .link }}">{{ .name }}</a>{{ else }}<strong>{{ .name }}</strong>{{ end }}
+        </p>
+        <p class="paper-meta">{{ .description }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ── Teaching ── */}}
+{{ $teaching := .Site.Data.teaching }}
+{{ if $teaching }}
+<section class="section" id="teaching">
+  <div class="container">
+    <h2>Teaching</h2>
+    <div class="teaching-list">
+      {{ range $teaching }}
+      <div class="teaching-entry">
+        <span class="course-name">{{ .course }}</span>
+        <span class="paper-meta">{{ .role }} &middot; {{ .institution }} &middot; {{ .term }}</span>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ── Awards ── */}}
+{{ with .Params.awards }}
+<section class="section" id="awards">
+  <div class="container">
+    <h2>Fellowships &amp; Awards</h2>
+    <ul class="awards-list">
+      {{ range . }}
+      <li>{{ . | safeHTML }}</li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+{{ end }}
+
+{{/* ── News ── */}}
+{{ with .Params.news }}
+<section class="section" id="news">
+  <div class="container">
+    <h2>News</h2>
+    <ul class="news-list">
+      {{ range . }}
+      <li><span class="news-date muted">{{ .date }}</span>{{ .item | safeHTML }}</li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+{{ end }}
+
+{{/* ── Contact ── */}}
+<section class="section" id="contact">
+  <div class="container">
+    <h2>Contact</h2>
+    {{ with .Site.Params.email }}<p><a href="mailto:{{ . }}">{{ . }}</a></p>{{ end }}
+    {{ with .Site.Params.address }}<p class="muted">{{ . }}</p>{{ end }}
+    <div class="social-links" style="margin-top:0.75rem">
+      {{ with .Site.Params.scholar }}<a class="social-link" href="{{ . }}">Google Scholar</a>{{ end }}
+      {{ with .Site.Params.github }}<a class="social-link" href="{{ . }}">GitHub</a>{{ end }}
+      {{ with .Site.Params.twitter }}<a class="social-link" href="{{ . }}">Twitter/X</a>{{ end }}
+      {{ with .Site.Params.linkedin }}<a class="social-link" href="{{ . }}">LinkedIn</a>{{ end }}
+      {{ with .Site.Params.orcid }}<a class="social-link" href="{{ . }}">ORCID</a>{{ end }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

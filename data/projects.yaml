@@ -1,0 +1,3 @@
+- name: "tradedata"
+  description: "R package for accessing and harmonizing bilateral trade data from CEPII, WTO, and UNCTAD sources."
+  link: "https://github.com/georgeyean/tradedata"

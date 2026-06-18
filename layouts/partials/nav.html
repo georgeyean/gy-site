@@ -1,0 +1,11 @@
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<nav aria-label="Site navigation">
+  <div class="nav-inner">
+    <a href="{{ "/" | relURL }}" class="nav-name">{{ .Site.Params.author }}</a>
+    <ul>
+      {{ range .Site.Menus.main }}
+      <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+</nav>
